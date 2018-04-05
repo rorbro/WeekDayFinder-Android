@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wdf_background"
+    tools:context="com.brookswebpro.bjbrooks.weekdayfinder.MainActivity">
+
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:onClick="submitPressed"
+        android:text="Submit Month"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:onClick="startOver"
+        android:text="Start Over"
+        android:textSize="10sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/box_small" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="170dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/topLabel"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/editTextYear"
+            android:layout_alignRight="@+id/editTextYear"
+            android:layout_alignTop="@+id/frameLayout"
+            android:layout_marginEnd="36dp"
+            android:layout_marginRight="36dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/whitebox" />
+
+        <EditText
+            android:id="@+id/editTextYear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/imageView"
+            android:layout_toEndOf="@+id/label"
+            android:layout_toRightOf="@+id/label"
+            android:ems="10"
+            android:inputType="number"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignBaseline="@+id/spinner"
+                android:layout_alignBottom="@+id/spinner"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:paddingLeft="3dp"
+                android:paddingTop="5dp"
+                android:text="Month: "
+                android:textColor="#010101"
+                android:textSize="12sp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/months_array" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="17dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="#010101"
+        android:textSize="10sp"
+        android:layout_below="@+id/frameLayout"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/topLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FDFEFE"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="Select Month"
+        android:textColor="#010101"
+        android:textSize="12sp"
+        android:layout_above="@+id/imageView"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"/>
+
+
+</android.widget.RelativeLayout>
