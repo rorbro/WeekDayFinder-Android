@@ -25,8 +25,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-String[] monthsArray = {"January", "February", "March", "April", "May", "June", "July", "August",
-"September", "October", "November", "December"};
+    String[] monthsArray = {"January", "February", "March", "April", "May", "June", "July", "August",
+        "September", "October", "November", "December"};
     ArrayList<Integer> daysArray = new ArrayList<Integer>();
     TextView label;
     RelativeLayout layoutR;
@@ -123,8 +123,6 @@ String[] monthsArray = {"January", "February", "March", "April", "May", "June", 
             spinner.setAdapter(adapter2);
             resultTextView.setText("You entered: " + date);
             enterButton.setText("Submit Day");
-
-
         } else if (!isDaySelected) {
             isDaySelected = true;
             date += " " + day;
@@ -135,18 +133,16 @@ String[] monthsArray = {"January", "February", "March", "April", "May", "June", 
             resultTextView.setText("You entered: " + date + "\n\n ENTER YEAR");
             label.setText("Year: ");
             enterButton.setText("Submit Year");
-
         } else if (!isYearSelected) {
             if (TextUtils.isEmpty(yearEntered.getText().toString())) {
                 Toast.makeText(getApplicationContext(), "Please enter a number", Toast.LENGTH_LONG).show();
                 yearEntered.setText("");
             } else {
-
                 try {
                     year = yearEntered.getText().toString();
                     yearNumber = Integer.parseInt(year);
                     if (yearNumber > 1000000) {
-                        Toast.makeText(getApplicationContext(), "Please enter a smaller number", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Please enter a number between 0 and 1,000,000", Toast.LENGTH_LONG).show();
                     } else if (((monthNum == 2 && dayNumber == 29) && (((yearNumber - 2000) % 4 != 0) || ((yearNumber - 2000) % 100 == 0) && ((yearNumber - 2000) % 400 != 0)))) {
                         Toast.makeText(getApplicationContext(), year + " is not a leap year. Please try again.", Toast.LENGTH_LONG).show();
                         resetApp();
@@ -161,18 +157,16 @@ String[] monthsArray = {"January", "February", "March", "April", "May", "June", 
                         whitebgd.setVisibility(View.INVISIBLE);
                     }
                 } catch (Exception e) {
-                    resultTextView.setText("Please enter a smaller number");
+                    resultTextView.setText("Please enter a number between 0 and 1,000,000");
                     yearEntered.setText("");
                 }
             }
         } else {
             calculateWeekDay(dayNumber, yearNumber);
-
         }
     }
 
-    protected void hideKeyboard(View view)
-    {
+    protected void hideKeyboard(View view) {
         InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
@@ -183,7 +177,6 @@ String[] monthsArray = {"January", "February", "March", "April", "May", "June", 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-
         layoutR = (RelativeLayout) findViewById(R.id.relativeLayout);
         layoutR.setOnTouchListener(new OnTouchListener()
         {
@@ -196,10 +189,6 @@ String[] monthsArray = {"January", "February", "March", "April", "May", "June", 
         });
 
         spinner = (Spinner) findViewById(R.id.spinner);
-/*        adapter = ArrayAdapter.createFromResource(this, R.array.months_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-*/
         yearEntered = (EditText) findViewById(R.id.editTextYear);
         yearEntered.setVisibility(View.INVISIBLE);
 
@@ -215,33 +204,27 @@ String[] monthsArray = {"January", "February", "March", "April", "May", "June", 
         startOverButton.setVisibility(View.INVISIBLE);
 
         adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, monthsArray);
-    //NEW ADAPTER CODE
-    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    spinner.setAdapter(adapter);
-
-
-
+        //NEW ADAPTER CODE
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
         for (int i=1; i <= 29; i++) {
             daysArray.add(i);
         }
-
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-    if (!isMonthSelected) {
-        month = parent.getItemAtPosition(position).toString();
-    } else if (!isDaySelected) {
-        day = parent.getItemAtPosition(position).toString();
-
-    }
+        if (!isMonthSelected) {
+            month = parent.getItemAtPosition(position).toString();
+        } else if (!isDaySelected) {
+            day = parent.getItemAtPosition(position).toString();
+        }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     public void addDaysToMonth (int daysToAdd) {
@@ -321,7 +304,6 @@ String[] monthsArray = {"January", "February", "March", "April", "May", "June", 
                 }
                 break;
         }
-
         return adjustDays;
     }
 
@@ -407,18 +389,16 @@ String[] monthsArray = {"January", "February", "March", "April", "May", "June", 
         resultTextView.setText("The week day for " + date + " is " + finalDayString);
         startOverButton.setVisibility(View.VISIBLE);
     }
-    public void startOver (View view) {
 
+    public void startOver (View view) {
         resetApp();
         startOverButton.setVisibility(View.INVISIBLE);
         enterButton.setVisibility(View.VISIBLE);
         resultTextView.setText("");
         whitebgd.setVisibility(View.VISIBLE);
-
     }
 
     public void resetApp () {
-
         resultTextView.setText("Select Month");
         enterButton.setText("Enter Month");
         yearEntered.setText("");
